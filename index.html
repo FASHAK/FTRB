@@ -30,16 +30,19 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(180deg,transparent,transparent 60px,rgba(109,40,217,0.018) 60px,rgba(109,40,217,0.018) 61px);pointer-events:none;z-index:0}
 
 /* ── HEADER ── */
-header{position:sticky;top:0;z-index:300;background:rgba(8,12,16,0.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.header-inner{max-width:1320px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+header{position:sticky;top:0;z-index:300;background:rgba(8,12,16,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.header-top{max-width:1320px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:50px}
 .logo-wrap{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
-.logo-main{font-family:'Bebas Neue',cursive;font-size:1.75rem;letter-spacing:3px;background:linear-gradient(135deg,#fff 0%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo-sub{font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--purple-light)}
-nav{display:flex;gap:2px;flex-wrap:wrap}
-nav button{background:none;border:none;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.45rem .9rem;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap}
-nav button:hover,nav button.active{color:var(--gold);border-bottom-color:var(--gold)}
+.logo-main{font-family:'Bebas Neue',cursive;font-size:1.6rem;letter-spacing:3px;background:linear-gradient(135deg,#fff 0%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-sub{font-family:'Barlow Condensed',sans-serif;font-size:0.52rem;letter-spacing:4px;text-transform:uppercase;color:var(--purple-light)}
 .credit{font-size:0.6rem;color:var(--muted);letter-spacing:1px;flex-shrink:0}
 .credit span{color:var(--purple-light)}
+/* Nav row — always full width below logo row */
+.nav-row{border-top:1px solid var(--border);background:rgba(8,12,16,0.97);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav-row::-webkit-scrollbar{display:none}
+nav{display:flex;min-width:max-content;padding:0 1rem}
+nav button{background:none;border:none;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.6rem 1rem;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
+nav button:hover,nav button.active{color:var(--gold);border-bottom-color:var(--gold)}
 
 /* ── HERO ── */
 .hero{background:linear-gradient(160deg,#2e0a6b 0%,#12003a 45%,var(--bg) 100%);padding:2.5rem 1.5rem;position:relative;overflow:hidden;z-index:1;border-bottom:1px solid var(--border)}
@@ -171,38 +174,87 @@ nav button:hover,nav button.active{color:var(--gold);border-bottom-color:var(--g
 .reset-btn{width:100%;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;padding:.65rem;cursor:pointer;transition:all .2s}
 .reset-btn:hover{border-color:var(--red);color:var(--red)}
 
+/* ── FPL SECTION ── */
+.fpl-hero{background:linear-gradient(135deg,rgba(16,185,129,.12) 0%,rgba(8,12,16,0) 100%);border:1px solid rgba(16,185,129,.2);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.fpl-hero-text h2{font-family:'Bebas Neue',cursive;font-size:1.4rem;letter-spacing:2px;color:var(--green);margin-bottom:.2rem}
+.fpl-hero-text p{font-size:.78rem;color:var(--muted);letter-spacing:.5px}
+.fpl-budget{display:flex;gap:1rem}
+.fpl-budget-item{text-align:center;background:var(--card);border:1px solid var(--border);padding:.5rem 1rem}
+.fpl-budget-val{font-family:'Bebas Neue',cursive;font-size:1.5rem;color:var(--green);line-height:1}
+.fpl-budget-lbl{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.fpl-tabs{display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.fpl-tab{background:var(--card);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.45rem 1rem;cursor:pointer;transition:all .2s}
+.fpl-tab:hover,.fpl-tab.active{background:var(--green);border-color:var(--green);color:#000}
+.fpl-section{display:none}.fpl-section.active{display:block}
+.fpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
+.fpl-card{background:var(--card);border:1px solid var(--border);padding:1.1rem 1.25rem;transition:border-color .2s,transform .15s;position:relative;overflow:hidden}
+.fpl-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.fpl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.fpl-card.pos-GK::before{background:var(--gold)}
+.fpl-card.pos-DEF::before{background:var(--blue)}
+.fpl-card.pos-MID::before{background:var(--purple-light)}
+.fpl-card.pos-FWD::before{background:var(--red)}
+.fpl-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
+.fpl-name{font-weight:700;font-size:.95rem;color:var(--white)}
+.fpl-club-pos{font-size:.68rem;color:var(--muted);letter-spacing:.5px;margin-top:.15rem}
+.fpl-price{font-family:'Bebas Neue',cursive;font-size:1.5rem;color:var(--green);line-height:1}
+.fpl-price-lbl{font-size:.55rem;color:var(--muted);letter-spacing:1px;text-align:right}
+.fpl-stats-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem}
+.fpl-stat{background:var(--card2);padding:.3rem .6rem;display:flex;flex-direction:column;align-items:center;flex:1;min-width:50px}
+.fpl-stat-val{font-family:'Bebas Neue',cursive;font-size:1.1rem;color:var(--white);line-height:1}
+.fpl-stat-lbl{font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.fpl-form-bar{height:3px;background:var(--border);margin-top:.5rem}
+.fpl-form-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold))}
+.fpl-verdict{font-size:.72rem;color:var(--green);letter-spacing:.5px;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
+.fpl-verdict.warn{color:var(--gold)}.fpl-verdict.avoid{color:var(--red)}
+.fpl-pos-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:1px;padding:.15rem .4rem;margin-right:.3rem}
+.pos-GK .fpl-pos-badge{background:rgba(245,158,11,.15);color:var(--gold)}
+.pos-DEF .fpl-pos-badge{background:rgba(56,189,248,.15);color:var(--blue)}
+.pos-MID .fpl-pos-badge{background:rgba(139,92,246,.15);color:var(--purple-light)}
+.pos-FWD .fpl-pos-badge{background:rgba(239,68,68,.15);color:var(--red)}
+.fpl-tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.75rem}
+.fpl-tip-card{background:var(--card);border:1px solid var(--border);padding:1.25rem}
+.fpl-tip-icon{font-size:1.5rem;margin-bottom:.5rem}
+.fpl-tip-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--white);margin-bottom:.4rem}
+.fpl-tip-text{font-size:.8rem;color:var(--muted);line-height:1.6}
+
 @media(max-width:900px){
   .game-layout{grid-template-columns:1fr}
   .sidebar{position:static}
   .opts-grid{grid-template-columns:1fr}
-  nav button{padding:.4rem .6rem;font-size:.7rem}
   .match-team{font-size:.85rem}
   .standings-table{font-size:.78rem}
   .standings-table th,.standings-table td{padding:.5rem .5rem}
+  .stat-bar-bg{max-width:60px}
 }
 @media(max-width:600px){
   .hero-text h1{font-size:2.2rem}
-  .header-inner{padding:0 1rem}
+  .header-top{padding:0 1rem}
   .content-wrap{padding:1.5rem 1rem}
+  .fpl-grid{grid-template-columns:1fr}
+  .fpl-tips-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-inner">
+  <div class="header-top">
     <div class="logo-wrap">
       <div class="logo-main">FTRB ZONE</div>
       <div class="logo-sub">Premier League Hub</div>
     </div>
+    <div class="credit">Built by <span>PPdoesit</span></div>
+  </div>
+  <div class="nav-row">
     <nav>
       <button class="active" onclick="showPage('standings',this)">🏆 Table</button>
       <button onclick="showPage('results',this)">📋 Results</button>
       <button onclick="showPage('fixtures',this)">📅 Fixtures</button>
       <button onclick="showPage('stats',this)">📊 Stats</button>
+      <button onclick="showPage('fpl',this)">🎮 FPL Tips</button>
       <button onclick="showPage('game',this)">⚡ Quiz</button>
     </nav>
-    <div class="credit">Built by <span>PPdoesit</span></div>
   </div>
 </header>
 
@@ -318,6 +370,54 @@ nav button:hover,nav button.active{color:var(--gold);border-bottom-color:var(--g
         </tr></thead>
         <tbody id="cards-body"></tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FPL TIPS ══════ -->
+<div id="page-fpl" class="page">
+  <div class="content-wrap">
+    <div class="page-title"><span class="icon">🎮</span> FPL Tips — GW28 Picks</div>
+    <div class="freshness-bar">📅 Based on GW27 stats · Prices approximate · Always check official FPL app for exact prices</div>
+
+    <div class="fpl-hero">
+      <div class="fpl-hero-text">
+        <h2>Fantasy Premier League Hub</h2>
+        <p>Best picks by position based on form, fixtures & value · GW28 focus</p>
+      </div>
+      <div class="fpl-budget">
+        <div class="fpl-budget-item"><div class="fpl-budget-val">£100m</div><div class="fpl-budget-lbl">Budget</div></div>
+        <div class="fpl-budget-item"><div class="fpl-budget-val">15</div><div class="fpl-budget-lbl">Players</div></div>
+        <div class="fpl-budget-item"><div class="fpl-budget-val">GW28</div><div class="fpl-budget-lbl">Next GW</div></div>
+      </div>
+    </div>
+
+    <div class="fpl-tabs">
+      <button class="fpl-tab active" onclick="showFpl('all',this)">⭐ All Picks</button>
+      <button class="fpl-tab" onclick="showFpl('gk',this)">🧤 Goalkeepers</button>
+      <button class="fpl-tab" onclick="showFpl('def',this)">🛡️ Defenders</button>
+      <button class="fpl-tab" onclick="showFpl('mid',this)">🎯 Midfielders</button>
+      <button class="fpl-tab" onclick="showFpl('fwd',this)">⚽ Forwards</button>
+      <button class="fpl-tab" onclick="showFpl('tips',this)">💡 Strategy</button>
+    </div>
+
+    <div id="fpl-all" class="fpl-section active">
+      <div class="fpl-grid" id="fpl-all-grid"></div>
+    </div>
+    <div id="fpl-gk" class="fpl-section">
+      <div class="fpl-grid" id="fpl-gk-grid"></div>
+    </div>
+    <div id="fpl-def" class="fpl-section">
+      <div class="fpl-grid" id="fpl-def-grid"></div>
+    </div>
+    <div id="fpl-mid" class="fpl-section">
+      <div class="fpl-grid" id="fpl-mid-grid"></div>
+    </div>
+    <div id="fpl-fwd" class="fpl-section">
+      <div class="fpl-grid" id="fpl-fwd-grid"></div>
+    </div>
+    <div id="fpl-tips" class="fpl-section">
+      <div class="fpl-tips-grid" id="fpl-tips-grid"></div>
     </div>
   </div>
 </div>
@@ -700,6 +800,98 @@ function restartQ(){
   renderQ();
 }
 
+// ════ FPL DATA ════
+const fplPlayers = [
+  // GKs
+  {pos:'GK',flag:'🇪🇸',name:'David Raya',club:'Arsenal',price:'5.6',pts:112,form:8.4,cs:12,saves:33,apps:24,verdict:'✅ Must-own. Best keeper in the league. Arsenal have great fixtures ahead.',verdictClass:''},
+  {pos:'GK',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'Jordan Pickford',club:'Everton',price:'4.8',pts:89,form:6.2,cs:9,saves:66,apps:24,verdict:'✅ Budget gem. Cheap, reliable, good save points.',verdictClass:''},
+  {pos:'GK',flag:'🇮🇹',name:'Gianluigi Donnarumma',club:'Man City',price:'5.2',pts:84,form:5.8,cs:9,saves:48,apps:21,verdict:'⚠️ City concede few but fixtures tighten. Good rotation risk.',verdictClass:'warn'},
+
+  // DEFs
+  {pos:'DEF',flag:'🇧🇷',name:'Gabriel',club:'Arsenal',price:'6.2',pts:108,form:7.8,g:4,a:1,cs:12,apps:24,verdict:'✅ Attacking CB with clean sheet bonus machine. Essential.',verdictClass:''},
+  {pos:'DEF',flag:'🇳🇱',name:'Virgil van Dijk',club:'Liverpool',price:'6.4',pts:97,form:7.0,g:3,a:1,cs:7,apps:22,verdict:'✅ Captain material on his day. Liverpool face weaker sides ahead.',verdictClass:''},
+  {pos:'DEF',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'Trent Alexander-Arnold',club:'Liverpool',price:'7.2',pts:94,form:7.5,g:2,a:7,cs:7,apps:20,verdict:'✅ Assist threat from right back. Double-up with Van Dijk.',verdictClass:''},
+  {pos:'DEF',flag:'🇧🇷',name:'Pedro Porro',club:'Tottenham',price:'5.4',pts:78,form:5.2,g:2,a:4,cs:5,apps:24,verdict:'⚠️ Attacking but risky. Spurs shaky defensively.',verdictClass:'warn'},
+  {pos:'DEF',flag:'🇦🇷',name:'Marcos Acuña',club:'Bournemouth',price:'4.5',pts:72,form:5.5,g:1,a:3,cs:6,apps:21,verdict:'✅ Budget pick with clean sheet upside. Great value.',verdictClass:''},
+
+  // MIDs
+  {pos:'MID',flag:'🇵🇹',name:'Bruno Fernandes',club:'Man United',price:'8.4',pts:148,form:9.8,g:6,a:12,apps:23,verdict:'✅ CAPTAIN PICK. 18 goal contributions. Best midfielder in FPL right now.',verdictClass:''},
+  {pos:'MID',flag:'🇪🇬',name:'Mohamed Salah',club:'Liverpool',price:'13.1',pts:132,form:8.6,g:6,a:6,apps:18,verdict:'✅ Premium essential. Returning from injury, watch his fitness.',verdictClass:''},
+  {pos:'MID',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'Bukayo Saka',club:'Arsenal',price:'10.2',pts:118,form:7.9,g:5,a:7,apps:22,verdict:'✅ Arsenal\'s creative hub. Blank GW risk is low with their schedule.',verdictClass:''},
+  {pos:'MID',flag:'🇫🇷',name:'Rayan Cherki',club:'Man City',price:'6.1',pts:99,form:7.2,g:3,a:7,apps:22,verdict:'✅ Differential gem. 10 involvements at budget price.',verdictClass:''},
+  {pos:'MID',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'Phil Foden',club:'Man City',price:'8.8',pts:96,form:6.8,g:7,a:4,apps:21,verdict:'⚠️ Quality but rotation risk remains. Check team news before picking.',verdictClass:'warn'},
+  {pos:'MID',flag:'🇬🇭',name:'Mohammed Kudus',club:'Tottenham',price:'6.5',pts:88,form:6.5,g:3,a:6,apps:23,verdict:'✅ Differential. Good form and upcoming fixtures.',verdictClass:''},
+
+  // FWDs
+  {pos:'FWD',flag:'🇳🇴',name:'Erling Haaland',club:'Man City',price:'14.8',pts:185,form:11.2,g:22,a:7,apps:27,verdict:'✅ VICE CAPTAIN. 29 goal contributions. Still the most lethal FPL asset.',verdictClass:''},
+  {pos:'FWD',flag:'🇧🇷',name:'Igor Thiago',club:'Brentford',price:'6.8',pts:124,form:8.9,g:14,a:2,apps:22,verdict:'✅ Budget Haaland. 14 goals is extraordinary for his price.',verdictClass:''},
+  {pos:'FWD',flag:'🇨🇲',name:'Bryan Mbeumo',club:'Man United',price:'7.4',pts:112,form:7.8,g:8,a:5,apps:23,verdict:'✅ Consistent. 13 FPL returns this season. Reliable pick.',verdictClass:''},
+  {pos:'FWD',flag:'🇬🇭',name:'Antoine Semenyo',club:'Man City',price:'6.2',pts:96,form:7.1,g:11,a:3,apps:24,verdict:'✅ Great value. Now at City — expect more big performances.',verdictClass:''},
+  {pos:'FWD',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'Danny Welbeck',club:'Brighton',price:'5.5',pts:88,form:6.4,g:9,a:1,apps:24,verdict:'⚠️ Brighton fixtures get harder. Good for now but monitor.',verdictClass:'warn'},
+  {pos:'FWD',flag:'🇫🇷',name:'Jean-Philippe Mateta',club:'Crystal Palace',price:'7.0',pts:84,form:6.0,g:9,a:0,apps:24,verdict:'⚠️ Goals only — no assists. Palace face Arsenal & Liverpool soon.',verdictClass:'warn'},
+];
+
+const fplTips = [
+  {icon:'👑',title:'Captain Pick — GW28',text:'Bruno Fernandes (£8.4m) is the standout captain for GW28. 12 assists and 6 goals this season. Man United vs Everton at home should produce returns.'},
+  {icon:'💰',title:'Best Budget Pick',text:'Igor Thiago (£6.8m) gives you 14 goals for a sub-£7m price. Own him before his price rises further — he\'s the bargain of the season.'},
+  {icon:'🔄',title:'Differential to Try',text:'Rayan Cherki (£6.1m) has 10 goal contributions in 22 apps and is still under-owned. Great way to get Man City coverage without paying for Haaland.'},
+  {icon:'🛡️',title:'Best Defensive Pick',text:'David Raya + Gabriel is the Arsenal double-up dream. Between them they cover clean sheets, saves, attacking returns and bonus points consistently.'},
+  {icon:'⚠️',title:'Who to Avoid GW28',text:'Avoid heavy investment in Tottenham players. Spurs face Arsenal away in GW27 and their defensive record makes clean sheet points unlikely.'},
+  {icon:'📈',title:'Form Players to Watch',text:'Erling Haaland is in his best run of form this season. If you don\'t own him, consider bringing him in. His ownership is rising rapidly.'},
+  {icon:'🔥',title:'Triple City Attack?',text:'Haaland + Cherki + Semenyo gives you three City players who all have different paths to points. Works well if you accept the risk of a City blank.'},
+  {icon:'📊',title:'FPL Value Formula',text:'Points per million is the FPL holy grail. Thiago (18.2 pts/£m), Cherki (16.2 pts/£m), and Raya (20 pts/£m) lead the value charts this season.'},
+];
+
+function fplCard(p){
+  const statKeys = p.pos==='GK'
+    ? [{k:'pts',l:'PTS'},{k:'cs',l:'CS'},{k:'saves',l:'SAVES'},{k:'apps',l:'APPS'}]
+    : [{k:'pts',l:'PTS'},{k:'g',l:'GOALS'},{k:'a',l:'ASSISTS'},{k:'apps',l:'APPS'}];
+  const stats = statKeys.map(s=>`<div class="fpl-stat"><div class="fpl-stat-val">${p[s.k]??0}</div><div class="fpl-stat-lbl">${s.l}</div></div>`).join('');
+  const formPct = Math.min(Math.round((p.form/12)*100),100);
+  return `<div class="fpl-card pos-${p.pos}">
+    <div class="fpl-card-top">
+      <div>
+        <div class="fpl-name">${p.flag} ${p.name}</div>
+        <div class="fpl-club-pos"><span class="fpl-pos-badge">${p.pos}</span>${p.club}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="fpl-price">£${p.price}m</div>
+        <div class="fpl-price-lbl">FPL PRICE</div>
+      </div>
+    </div>
+    <div class="fpl-stats-row">${stats}</div>
+    <div class="fpl-form-bar"><div class="fpl-form-fill" style="width:${formPct}%"></div></div>
+    <div class="fpl-verdict ${p.verdictClass}">${p.verdict}</div>
+  </div>`;
+}
+
+function renderFPL(){
+  const positions=['GK','DEF','MID','FWD'];
+  const grids={GK:'gk',DEF:'def',MID:'mid',FWD:'fwd'};
+  // All picks sorted by pts
+  document.getElementById('fpl-all-grid').innerHTML=
+    [...fplPlayers].sort((a,b)=>b.pts-a.pts).map(fplCard).join('');
+  // Per position
+  positions.forEach(pos=>{
+    document.getElementById(`fpl-${grids[pos]}-grid`).innerHTML=
+      fplPlayers.filter(p=>p.pos===pos).map(fplCard).join('');
+  });
+  // Tips
+  document.getElementById('fpl-tips-grid').innerHTML=fplTips.map(t=>`
+    <div class="fpl-tip-card">
+      <div class="fpl-tip-icon">${t.icon}</div>
+      <div class="fpl-tip-title">${t.title}</div>
+      <div class="fpl-tip-text">${t.text}</div>
+    </div>`).join('');
+}
+
+function showFpl(id,btn){
+  document.querySelectorAll('.fpl-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.fpl-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('fpl-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
 // ════ NAV ════
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -720,6 +912,7 @@ renderStandings();
 renderResults();
 renderFixtures();
 renderGoals();renderAssists();renderCS();renderGA();renderCards();
+renderFPL();
 renderQ();
 </script>
 </body>
